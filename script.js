@@ -1,9 +1,9 @@
 'use strict';
 
-// Create secret number
-const number = Math.trunc(Math.random() * 20) + 1;
-// TODO: hide number
-document.querySelector('.number').textContent = number;
+// Generate secret number
+const secretNumber = Math.trunc(Math.random() * 20) + 1;
+// TODO: hide  secret number
+document.querySelector('.number').textContent = secretNumber;
 
 // Event Listener for the Check button
 document.querySelector('.check').addEventListener('click', function () {
@@ -11,5 +11,7 @@ document.querySelector('.check').addEventListener('click', function () {
 
   if (!guess) {
     document.querySelector('.message').textContent = '🚫 Must give a number!';
+  } else if (guess === secretNumber) {
+    document.querySelector('.message').textContent = '🎉 Correct number!';
   }
 });
