@@ -17,6 +17,7 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.message').textContent = '🚫 Must give a number!';
     } else if (guess === secretNumber) {
       document.querySelector('.message').textContent = '🎉 Correct number!';
+      document.querySelector('body').style.backgroundColor = '#60b347';
     } else if (guess > secretNumber) {
       document.querySelector('.message').textContent = '⬇️ Guess lower!';
       score--;
@@ -29,5 +30,6 @@ document.querySelector('.check').addEventListener('click', function () {
   } else {
     document.querySelector('.message').textContent = '☹️ Game over';
     document.querySelector('.score').textContent = 0;
+    document.querySelector('body').style.backgroundColor = '#FF0000';
   }
 });
