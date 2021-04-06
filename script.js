@@ -3,8 +3,9 @@
 // Generate secret number
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 
-// Create score variable
+// Create score and highscore variable
 let score = 20;
+let highscore = 0;
 
 // Event Listener for the Check button
 document.querySelector('.check').addEventListener('click', function () {
@@ -12,22 +13,32 @@ document.querySelector('.check').addEventListener('click', function () {
 
   if (score > 1) {
     if (!guess) {
+      // V-Check for empty input
       document.querySelector('.message').textContent = '🚫 Must give a number!';
     } else if (guess === secretNumber) {
+      // Check for winner
       document.querySelector('.message').textContent = '🎉 Correct number!';
       document.querySelector('body').style.backgroundColor = '#60b347';
       document.querySelector('.number').style.width = '30rem';
       document.querySelector('.number').textContent = secretNumber;
+      if (score > highscore) {
+        // Check and set highscore
+        highscore = score;
+        document.querySelector('.highscore').textContent = highscore;
+      }
     } else if (guess > secretNumber) {
+      // Guess still higher
       document.querySelector('.message').textContent = '⬇️ Guess lower!';
       score--;
       document.querySelector('.score').textContent = score;
     } else if (guess < secretNumber) {
+      // Guess still lower
       document.querySelector('.message').textContent = '⬆️ Guess higher!';
       score--;
       document.querySelector('.score').textContent = score;
     }
   } else {
+    // Lose game
     document.querySelector('.message').textContent = '☹️ Game over';
     document.querySelector('.score').textContent = 0;
     document.querySelector('body').style.backgroundColor = '#FF0000';
