@@ -1,16 +1,19 @@
 'use strict';
 
-// Generate secret number
-let secretNumber = Math.trunc(Math.random() * 20) + 1;
-
-// Create score and highscore variable
-let score = 20;
-let highscore = 0;
+// Function to create a random number between 1 and x
+const getRandomNumber = function (number) {
+  return Math.trunc(Math.random() * number) + 1;
+};
 
 // Create function to display message
 const displayMessage = function (message) {
   document.querySelector('.message').textContent = message;
 };
+
+// Create secret number, score and highscore variable
+let secretNumber = getRandomNumber(20);
+let score = 20;
+let highscore = 0;
 
 // Event Listener for the Check button
 document.querySelector('.check').addEventListener('click', function () {
@@ -50,7 +53,7 @@ document.querySelector('.check').addEventListener('click', function () {
 // Event Listener for the play Again! button
 document.querySelector('.again').addEventListener('click', function () {
   score = 20;
-  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  secretNumber = getRandomNumber(20);
   displayMessage('Start guessing...');
   document.querySelector('.score').textContent = score;
   document.querySelector('.guess').value = '';
