@@ -12,33 +12,29 @@ document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
 
   if (score > 1) {
+    // Check for empty input
     if (!guess) {
-      // V-Check for empty input
       document.querySelector('.message').textContent = '🚫 Must give a number!';
-    } else if (guess === secretNumber) {
       // Check for winner
+    } else if (guess === secretNumber) {
       document.querySelector('.message').textContent = '🎉 Correct number!';
       document.querySelector('body').style.backgroundColor = '#60b347';
       document.querySelector('.number').style.width = '30rem';
       document.querySelector('.number').textContent = secretNumber;
+      // Check and set highscore
       if (score > highscore) {
-        // Check and set highscore
         highscore = score;
         document.querySelector('.highscore').textContent = highscore;
       }
-    } else if (guess > secretNumber) {
-      // Guess still higher
-      document.querySelector('.message').textContent = '⬇️ Guess lower!';
-      score--;
-      document.querySelector('.score').textContent = score;
-    } else if (guess < secretNumber) {
-      // Guess still lower
-      document.querySelector('.message').textContent = '⬆️ Guess higher!';
+      // Check for wrong guess
+    } else if (guess !== secretNumber) {
+      document.querySelector('.message').textContent =
+        guess > secretNumber ? '⬇️ Guess lower!' : '⬆️ Guess higher!';
       score--;
       document.querySelector('.score').textContent = score;
     }
-  } else {
     // Lose game
+  } else {
     document.querySelector('.message').textContent = '☹️ Game over';
     document.querySelector('.score').textContent = 0;
     document.querySelector('body').style.backgroundColor = '#FF0000';
